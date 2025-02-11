@@ -1,0 +1,36 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\null\\Documents\\lost-sea-adventure\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C70BE406-5298-41AA-8D48-51CD4AAD71F5}|new2.csproj|c:\\users\\null\\documents\\lost-sea-adventure\\new2.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{C70BE406-5298-41AA-8D48-51CD4AAD71F5}|new2.csproj|solutionrelative:new2.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "new2",
+              "DocumentMoniker": "C:\\Users\\null\\Documents\\lost-sea-adventure\\new2.csproj",
+              "RelativeDocumentMoniker": "new2.csproj",
+              "ToolTip": "C:\\Users\\null\\Documents\\lost-sea-adventure\\new2.csproj",
+              "RelativeToolTip": "new2.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-01-19T16:23:08.699Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
