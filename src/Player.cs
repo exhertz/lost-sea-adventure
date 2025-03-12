@@ -12,12 +12,20 @@ public partial class Player : RigidBody3D
 
     [Export] public float Acceleration = 0.5f; // Ускорение для плавного разгона
 
+    [Export] public int FishCaught = 0; // Добавляем переменную для хранения количества пойманных рыб
+    private bool _isFishing = false;
+    private float _fishingTimer = 0f;
+    private const float FishingDuration = 2f;
+
     private float _gravity;
     private Node3D _water;
     private List<Node3D> _probes = new List<Node3D>();
     private bool _submerged = false;
 
     private float _currentSpeed = 0.0f; // Текущая скорость лодки
+
+    private Label _fishingPrompt;
+    private Label _fishingCountLabel;
 
     public override void _Ready()
     {
@@ -28,6 +36,11 @@ public partial class Player : RigidBody3D
         {
             _probes.Add(probe);
         }
+
+        _fishingPrompt = GetNode<Label>("../UI/FishingPrompt");
+        _fishingPrompt.Visible = false;
+
+        _fishingCountLabel = GetNode<Label>("../UI/FishingCount");
     }
 
     public override void _PhysicsProcess(double delta)
@@ -46,6 +59,8 @@ public partial class Player : RigidBody3D
         }
 
         HandleMovement(delta);
+        HandleFishing(delta);
+        UpdateFishingCount();
     }
 
     private void HandleMovement(double delta)
@@ -92,5 +107,62 @@ public partial class Player : RigidBody3D
             state.LinearVelocity *= 1.0f - WaterDrag;
             state.AngularVelocity *= 1.0f - WaterAngularDrag;
         }
+    }
+
+    private async void HandleFishing(double delta)
+    {
+        if (Input.IsActionJustPressed("fishing") && !_isFishing)
+        {
+            StartFishing();
+        }
+        
+        if (_isFishing)
+        {
+            _fishingTimer += (float)delta;
+            
+            if (Input.IsActionJustPressed("ui_select"))
+            {
+                if (_fishingTimer <= FishingDuration)
+                {
+                    FishCaught++;
+                    GD.Print("Рыба поймана! Всего рыб: ", FishCaught);
+                }
+                else
+                {
+                    _fishingPrompt.Text = "Рыба ушла!";
+                    GD.Print("Рыба ушла!");
+                }
+                _isFishing = false;
+                await ToSignal(GetTree().CreateTimer(2.0f), "timeout");
+                EndFishing();
+            }
+            else if (_fishingTimer > FishingDuration * 1.5f)
+            {
+                _fishingPrompt.Text = "Слишком медленно!";
+                GD.Print("Слишком медленно!");
+                _isFishing = false;
+                await ToSignal(GetTree().CreateTimer(2.0f), "timeout");
+                EndFishing();
+            }
+        }
+    }
+    
+    private void StartFishing()
+    {
+        _isFishing = true;
+        _fishingTimer = 0f;
+        _fishingPrompt.Text = "Нажмите ПРОБЕЛ, чтобы поймать рыбу!";
+        _fishingPrompt.Visible = true;
+    }
+    
+    private void EndFishing()
+    {
+        _isFishing = false;
+        _fishingPrompt.Visible = false;
+    }
+
+    private void UpdateFishingCount()
+    {
+        _fishingCountLabel.Text = $"Рыб поймано: {FishCaught}";
     }
 }

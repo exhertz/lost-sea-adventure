@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://t156vr3eufto"]
+
+[ext_resource type="Script" path="res://src/MenuLayer.cs" id="1_neswt"]
+
+[node name="MainMenu" type="Node2D"]
+
+[node name="MenuLayer" type="CanvasLayer" parent="."]
+script = ExtResource("1_neswt")
+
+[node name="MenuContainer" type="Control" parent="MenuLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="MenuLayer/MenuContainer"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayButton" type="Button" parent="MenuLayer/MenuContainer"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 545.0
+offset_right = 331.0
+offset_bottom = 596.0
+theme_override_font_sizes/font_size = 22
+text = "Начать приключение"
+flat = true
+alignment = 0

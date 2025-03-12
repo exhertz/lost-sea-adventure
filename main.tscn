@@ -442,3 +442,18 @@ skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Rock3/Rock3/Rock/Rock/Rock/Rock"]
 shape = SubResource("BoxShape3D_wq066")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="FishingPrompt" type="Label" parent="UI"]
+offset_left = 11.0
+offset_top = 549.0
+offset_right = 1139.0
+offset_bottom = 572.0
+horizontal_alignment = 1
+
+[node name="FishingCount" type="Label" parent="UI"]
+offset_left = 16.0
+offset_top = 51.0
+offset_right = 95.0
+offset_bottom = 74.0
